@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+Voice Activated
+<div id="text"></div>
+<script>
+speechRecognition = new webkitSpeechRecognition();
+speechRecognition.onresult = event => {
+	for(const res of event.results){
+		//console.log(res.isFinal);
+
+		if(res.isFinal){
+			const text = res[0].transcript;
+			document.getElementById('text').innerHTML = text;
+		}
+	}
+}
+speechRecognition.continuous = true;
+speechRecognition.interimResults = true;
+speechRecognition.start();
+</script>
+</body>
+</html>
